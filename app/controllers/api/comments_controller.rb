@@ -15,5 +15,4 @@ class Api::CommentsController < ApplicationController
   def create_params
     params.require(:comment).permit(:body)
   end
-
 end
