@@ -1,5 +1,19 @@
 class Api::CommentsController < ApplicationController
   def create
-    binding.pry
+    article = Article.find(params['article_id'])
+    comment = article.comments.create(create_params)
+
+    if comment.persisted?
+      render json: { message: 'Successfully posted your comment' }, status: 201
+    else
+      render json: { error_message: 'Comment cannot be empty.' }, status: 422
+    end
   end
+
+  private
+
+  def create_params
+    params.require(:comment).permit(:body)
+  end
+
 end
