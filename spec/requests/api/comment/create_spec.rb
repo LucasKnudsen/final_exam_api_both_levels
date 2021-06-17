@@ -61,16 +61,15 @@ RSpec.describe 'POST /api/articles/:id/comments', type: :request do
             comment: { 
               body: 'I would like to comment even though I am not logged in..'
             }
-          }, headers: 'wrong headers'
+          }, headers: {}
       end
 
       it 'is expected to return a 401 status' do
         expect(response).to have_http_status 401
       end
 
-      it 'is expected to return an eror message' do
-        binding.pry
-        expect(response_json['errors'].to_sentence).to eq 'You need to sign in or something..'
+      it 'is expected to return an error message' do
+        expect(response_json['errors']).to eq ['You need to sign in or sign up before continuing.']
       end
     end
   end
