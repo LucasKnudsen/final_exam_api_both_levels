@@ -30,7 +30,7 @@ RSpec.describe 'POST /api/articles/:id/comments', type: :request do
     end
 
     it 'is expected to have been written by a user' do
-      expect(article.user['email']).to eq user.email
+      expect(article.comments.first.user['email']).to eq user.email
     end
   end
 

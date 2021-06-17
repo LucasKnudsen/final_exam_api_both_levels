@@ -1,8 +1,9 @@
 class Api::CommentsController < ApplicationController
   def create
     article = Article.find(params['article_id'])
-    comment = article.comments.create(create_params)
+    comment = article.comments.create(create_params.merge(user_id: current_user.id))
 
+    binding.pry
     if comment.persisted?
       render json: { message: 'Successfully posted your comment' }, status: 201
     else
