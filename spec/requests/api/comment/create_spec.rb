@@ -1,4 +1,4 @@
-RSspec.describe 'POST /api/articles/:id/comments', type: :request do
+RSpec.describe 'POST /api/articles/:id/comments', type: :request do
   let(:article) { create(:article) }
 
   describe 'Successfully' do
